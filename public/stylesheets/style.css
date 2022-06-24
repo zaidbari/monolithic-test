@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: beige;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.container {
+  max-width: 80vw;
+  margin: 0 auto;
+}

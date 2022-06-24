@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<% if (!user) { %>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/signup">Signup</a>
+			<% } %>
+      <% if (user) { %>
+        <a href="/auth/logout">Logout</a>
+      <% } %>
+
+
+			<h1><%= title %></h1>
+			<h1><%= error %></h1>
+
+			<% if (user) { %>
+			<h3>Create a post</h3>
+			<form action="/create" method="post">
+				<input placeholder="Title ..." type="text" name="title" />
+				<button>Submit</button>
+			</form>
+			<% } %>
+
+			<!-- if posts variable exists loop over it -->
+			<% if (posts) { %> <% posts.forEach(function(post) { %>
+			<div class="card">
+				<h3><%= post.title %></h3>
+				<% if (user) { %>
+				<form action="/comment" method="post">
+					<input placeholder="comment ..." type="text" name="content" />
+					<input type="hidden" value="<%= post._id %>" name="id" />
+					<button>Submit</button>
+				</form>
+				<% } %>
+
+				<div>
+					<% post.comments.forEach(function(comment) { %> <% if (comment.status === 'accepted') { %>
+					<p><%= comment.content %></p>
+					<% } %> <% if (comment.status === 'rejected') { %>
+					<p>REJECTED</p>
+					<% } %> <% }); %>
+				</div>
+			</div>
+			<% }); %> <% } %>
+		</div>
+	</body>
+</html>
